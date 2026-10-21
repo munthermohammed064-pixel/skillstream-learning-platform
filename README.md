@@ -15,4 +15,10 @@ SkillStream is an online learning platform with three types of users: Admin, Tea
 |------|-----------|--------|
 | 1 | Project idea, problem statement and references | Done |
 | 2 | Functional / non-functional requirements, scope | Done |
-| 3-9 | Design, implementation, testing and final delivery | Planned |
+| 3 | Architecture and technical design | In Progress |
+| 4-9 | Implementation, testing and final delivery | Planned |
+
+## Week 3 - Architecture Design
+- [Architecture Decisions](docs/design/architecture-decisions.md) - Component responsibilities, data flows, and technology justifications
+- [Architecture Diagram](docs/design/architecture-diagram.md) - System architecture with component boundaries and data flow
+- [Week 3 Progress Log](docs/weekly-progress/week03.md) - Design walkthrough, risks, and prototype plan
