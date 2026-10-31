@@ -5,7 +5,8 @@
   "description": "Week 4 authentication prototype for the SkillStream graduation project",
   "scripts": {
     "start": "node src/server.js",
-    "verify:week4": "node scripts/verify-week4.js"
+    "verify:week4": "node scripts/verify-week4.js",
+    "verify:courses": "node scripts/verify-courses.js"
   },
   "engines": {
     "node": ">=22.5.0"

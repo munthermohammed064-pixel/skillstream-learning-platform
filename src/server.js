@@ -18,6 +18,7 @@ const databasePath = process.env.SKILLSTREAM_DB_PATH || path.join(dataDir, 'skil
 const db = new DatabaseSync(databasePath);
 db.exec(`
   PRAGMA journal_mode = WAL;
+  PRAGMA foreign_keys = ON;
   CREATE TABLE IF NOT EXISTS users (
     user_id TEXT PRIMARY KEY,
     email TEXT NOT NULL COLLATE NOCASE UNIQUE,
@@ -26,6 +27,22 @@ db.exec(`
     first_name TEXT NOT NULL,
     last_name TEXT NOT NULL,
     created_at TEXT NOT NULL
+  );
+  CREATE TABLE IF NOT EXISTS courses (
+    course_id TEXT PRIMARY KEY,
+    teacher_id TEXT NOT NULL REFERENCES users(user_id),
+    title TEXT NOT NULL,
+    description TEXT NOT NULL,
+    category TEXT NOT NULL,
+    status TEXT NOT NULL CHECK(status IN ('draft', 'published')),
+    created_at TEXT NOT NULL
+  );
+  CREATE TABLE IF NOT EXISTS enrollments (
+    enrollment_id TEXT PRIMARY KEY,
+    user_id TEXT NOT NULL REFERENCES users(user_id),
+    course_id TEXT NOT NULL REFERENCES courses(course_id),
+    enrolled_at TEXT NOT NULL,
+    UNIQUE(user_id, course_id)
   );
 `);
 
@@ -60,7 +77,9 @@ function readJson(req) {
     });
     req.on('end', () => {
       try {
-        resolve(JSON.parse(body || '{}'));
+        const value = JSON.parse(body || '{}');
+        if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('Invalid JSON object');
+        resolve(value);
       } catch {
         reject(Object.assign(new Error('Request body must be valid JSON'), { statusCode: 400 }));
       }
@@ -200,6 +219,60 @@ async function handleApi(req, res, url) {
     return sendJson(res, 200, { user: publicUser(user) });
   }
 
+  if (url.pathname === '/api/courses' || url.pathname === '/api/enrollments' || /^\/api\/courses\/[^/]+(?:\/enroll)?$/.test(url.pathname)) {
+    const claims = authenticate(req);
+    const user = claims && findUserById.get(claims.sub);
+    if (!user) return sendJson(res, 401, { error: 'Please sign in to continue.' });
+    if (req.method === 'GET' && url.pathname === '/api/courses') {
+      const courses = db.prepare(`SELECT c.*, u.first_name || ' ' || u.last_name AS teacher_name,
+        (SELECT COUNT(*) FROM enrollments e WHERE e.course_id = c.course_id) AS student_count,
+        EXISTS(SELECT 1 FROM enrollments e WHERE e.course_id = c.course_id AND e.user_id = ?) AS enrolled
+        FROM courses c JOIN users u ON c.teacher_id = u.user_id
+        WHERE (? = 'teacher' AND c.teacher_id = ?) OR (? = 'student' AND c.status = 'published')
+        ORDER BY c.created_at DESC`).all(user.user_id, user.role, user.user_id, user.role);
+      return sendJson(res, 200, { courses });
+    }
+    if (req.method === 'GET' && url.pathname === '/api/enrollments') {
+      const courses = db.prepare(`SELECT c.*, u.first_name || ' ' || u.last_name AS teacher_name, e.enrolled_at
+        FROM enrollments e JOIN courses c ON c.course_id = e.course_id JOIN users u ON u.user_id = c.teacher_id
+        WHERE e.user_id = ? ORDER BY e.enrolled_at DESC`).all(user.user_id);
+      return sendJson(res, 200, { courses });
+    }
+    if (req.method === 'POST' && url.pathname === '/api/courses') {
+      if (user.role !== 'teacher') return sendJson(res, 403, { error: 'Only teachers can create courses.' });
+      const input = await readJson(req);
+      const title = typeof input.title === 'string' ? input.title.trim() : '';
+      const description = typeof input.description === 'string' ? input.description.trim() : '';
+      const category = typeof input.category === 'string' ? input.category.trim() : '';
+      if (!title || title.length > 120 || !description || description.length > 2000 || !category || category.length > 60) {
+        return sendJson(res, 400, { error: 'Enter a title (up to 120 characters), description (up to 2,000), and category (up to 60).' });
+      }
+      const courseId = crypto.randomUUID();
+      db.prepare('INSERT INTO courses VALUES (?, ?, ?, ?, ?, ?, ?)').run(courseId, user.user_id, title, description, category, 'draft', new Date().toISOString());
+      return sendJson(res, 201, { course: db.prepare('SELECT * FROM courses WHERE course_id = ?').get(courseId) });
+    }
+    const match = url.pathname.match(/^\/api\/courses\/([^/]+)(\/enroll)?$/);
+    if (match) {
+      const course = db.prepare('SELECT * FROM courses WHERE course_id = ?').get(match[1]);
+      if (!course) return sendJson(res, 404, { error: 'Course not found.' });
+      if (req.method === 'PATCH' && !match[2]) {
+        if (user.role !== 'teacher' || course.teacher_id !== user.user_id) return sendJson(res, 403, { error: 'You can only change your own courses.' });
+        const input = await readJson(req);
+        if (!['draft', 'published'].includes(input.status)) return sendJson(res, 400, { error: 'Choose draft or published.' });
+        db.prepare('UPDATE courses SET status = ? WHERE course_id = ?').run(input.status, course.course_id);
+        return sendJson(res, 200, { course: { ...course, status: input.status } });
+      }
+      if (req.method === 'POST' && match[2]) {
+        if (user.role !== 'student') return sendJson(res, 403, { error: 'Only students can enroll.' });
+        if (course.status !== 'published') return sendJson(res, 404, { error: 'This course is not available.' });
+        if (db.prepare('SELECT 1 FROM enrollments WHERE user_id = ? AND course_id = ?').get(user.user_id, course.course_id)) return sendJson(res, 409, { error: 'You are already enrolled.' });
+        const enrollmentId = crypto.randomUUID();
+        const enrolledAt = new Date().toISOString();
+        db.prepare('INSERT INTO enrollments VALUES (?, ?, ?, ?)').run(enrollmentId, user.user_id, course.course_id, enrolledAt);
+        return sendJson(res, 201, { enrollment_id: enrollmentId, course_id: course.course_id, enrolled_at: enrolledAt });
+      }
+    }
+  }
   return sendJson(res, 404, { error: 'API route not found.' });
 }
 

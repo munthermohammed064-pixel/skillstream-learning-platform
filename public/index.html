@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <main class="shell">
+  <main class="shell" id="auth-shell">
     <header class="brand">
       <a class="wordmark" href="/" aria-label="SkillStream home"><img src="/logo.svg" alt="" width="28" height="28">SkillStream</a>
     </header>
@@ -37,14 +37,44 @@
         <button class="submit" type="submit" id="submit-button">Create my account <span aria-hidden="true">→</span></button>
       </form>
       <div id="message" class="message" role="status" aria-live="polite" hidden></div>
-      <section id="account-panel" class="account-panel" hidden aria-live="polite">
-        <div class="checkmark" aria-hidden="true">✓</div>
-        <div><p class="eyebrow">SIGNED IN</p><h3 id="account-name"></h3><p id="account-details" class="muted"></p></div>
-        <button id="sign-out" class="sign-out" type="button">Sign out</button>
-      </section>
     </section>
-    <footer><span>SkillStream</span><span>Learn. Create. Grow.</span></footer>
+    <footer><span>SkillStream</span><span>© 2026</span></footer>
   </main>
+  <section class="workspace" id="workspace" hidden aria-label="Your workspace">
+    <header class="workspace-bar">
+      <a class="wordmark" href="/" aria-label="SkillStream home"><img src="/logo.svg" alt="" width="28" height="28">SkillStream</a>
+      <span id="workspace-role" class="role-label"></span>
+    </header>
+    <aside class="sidebar">
+      <div class="sidebar-heading">Workspace</div>
+      <nav aria-label="Workspace navigation">
+        <button class="nav-item" data-view="courses" id="courses-nav">Explore courses</button>
+        <button class="nav-item" data-view="learning" id="learning-nav">My learning</button>
+        <button class="nav-item" data-view="profile">Account</button>
+      </nav>
+      <div class="sidebar-account"><span class="avatar" id="user-initials"></span><div><strong id="sidebar-name"></strong><button id="sign-out" class="text-button">Sign out</button></div></div>
+    </aside>
+    <main class="workspace-content">
+      <header class="page-heading"><div><p class="section-kicker" id="page-kicker"></p><h1 id="page-title" tabindex="-1"></h1></div><button id="new-course" class="primary-button" hidden>New course <span aria-hidden="true">+</span></button></header>
+      <section id="courses-view">
+        <div class="overview"><div><span id="overview-label">Available courses</span><strong id="course-count">—</strong></div><p id="overview-note"></p></div>
+        <div class="list-toolbar"><h2 id="list-title">All courses</h2><div class="list-controls"><input id="course-search" type="search" placeholder="Search courses" aria-label="Search courses"><select id="category-filter" aria-label="Filter category"><option value="">All categories</option></select></div></div>
+        <div id="course-list" class="course-list" aria-live="polite"></div>
+      </section>
+      <section id="profile-view" hidden><dl class="profile-details" id="profile-details"></dl></section>
+    </main>
+  </section>
+  <div id="notice" class="notice" role="status" hidden></div>
+  <dialog id="course-dialog" aria-labelledby="course-dialog-title">
+    <form id="course-form"><div class="dialog-heading"><h2 id="course-dialog-title">New course</h2><button type="button" class="close-dialog" aria-label="Close">×</button></div>
+      <label>Title<input name="title" required maxlength="120" placeholder="Give your course a name"></label>
+      <label>Category<input name="category" required maxlength="60" placeholder="e.g. Software engineering"></label>
+      <label>Description<textarea name="description" required maxlength="2000" rows="4" placeholder="What will your students learn?"></textarea></label>
+      <p id="course-error" class="form-error" role="alert"></p>
+      <button class="primary-button" type="submit">Save draft</button>
+    </form>
+  </dialog>
+  <dialog id="detail-dialog" aria-labelledby="detail-title"><div class="dialog-heading"><span id="detail-category" class="section-kicker"></span><button class="close-dialog" aria-label="Close">×</button></div><h2 id="detail-title"></h2><p id="detail-teacher" class="detail-byline"></p><p id="detail-description"></p><p class="lesson-note">Lessons have not been added yet.</p></dialog>
   <script src="/app.js" defer></script>
 </body>
 </html>
