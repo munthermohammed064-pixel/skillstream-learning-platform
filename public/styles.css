@@ -56,3 +56,31 @@ footer { display: flex; justify-content: space-between; gap: 20px; width: min(10
   footer { width: calc(100% - 46px); }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Quiet surfaces, a custom stream monogram, and only the essential copy. */
+:root { background: #fafafa; }
+.brand { min-height: 82px; width: min(1120px, calc(100% - 80px)); padding: 0; background: transparent; border-bottom-color: #ececee; }
+.wordmark { display: inline-flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 600; letter-spacing: -.7px; }
+.wordmark img { display: block; }
+.intro { padding: 52px 24px 0; }
+.mark { width: 100px; height: 100px; margin-bottom: 22px; background: #fff; border-radius: 28px; border: 1px solid #e9e9ed; box-shadow: 0 8px 22px #00000004, 0 2px 4px #00000002; }
+.mark img { display: block; width: 73px; height: 73px; }
+h1 { font-size: clamp(36px, 5vw, 46px); letter-spacing: -1.9px; font-weight: 600; }
+.card { width: min(440px, calc(100% - 40px)); padding: 27px 30px 30px; margin-bottom: 48px; background: transparent; border: 0; box-shadow: none; border-radius: 0; }
+.tabs { margin: 0 0 27px; background: #ededf0; border-radius: 12px; padding: 4px; }
+.tab { min-height: 37px; border-radius: 9px; font-size: 12px; }
+form { gap: 19px; }
+label { color: #515156; font-size: 11px; gap: 8px; }
+input, select { height: 52px; border-color: #e0e0e5; border-radius: 12px; background: #fff; padding: 0 15px; }
+input:hover, select:hover { border-color: #b9b9c0; }
+.submit { min-height: 51px; margin-top: 9px; border-radius: 13px; font-weight: 500; }
+footer { width: min(1120px, calc(100% - 80px)); padding-bottom: 23px; border-top-color: #ececee; font-size: 10px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (max-width: 520px) {
+  .brand { min-height: 70px; width: calc(100% - 44px); padding: 0; }
+  .intro { padding-top: 34px; }
+  .mark { width: 84px; height: 84px; border-radius: 24px; margin-bottom: 19px; }
+  .mark img { width: 62px; height: 62px; }
+  .card { padding: 25px 12px; }
+  footer { width: calc(100% - 44px); }
+}
