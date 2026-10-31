@@ -104,7 +104,7 @@ The repository contained design documents but no runnable application code. Post
 | Important technical decision | Use Node.js built-in modules and SQLite for a runnable local prototype while documenting the planned-stack deviation |
 | Problem encountered | No existing app source; PostgreSQL unavailable and Docker engine not running |
 | Solution attempted | Added a local API and browser flow backed by SQLite |
-| Related GitHub commit | To be recorded after committing the Week 4 work |
+| Related GitHub commit | `584b9e2` — `feat: add Week 4 authentication prototype` |
 | Screenshot/other evidence | See `evidence/week-04/verification.md` after local verification |
 | Next development step | Finish preliminary checks, capture the real running UI, and prepare PostgreSQL migration before implementing course enrollment |
 

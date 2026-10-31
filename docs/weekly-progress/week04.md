@@ -57,7 +57,7 @@ The repeatable check is `npm run verify:week4`; its recorded output is in `evide
 | Important technical decision | Use built-in Node.js HTTP/SQLite/crypto modules to keep the prototype runnable without a package install or unavailable PostgreSQL service; preserve the intended API and authentication flow |
 | Problem encountered | No PostgreSQL installation or running Docker engine; no pre-existing application code |
 | Solution attempted | Local SQLite prototype and a simple static browser interface; record the difference from the Week 3 target for later migration |
-| Related GitHub commit | To be added after the Week 4 changes are committed |
+| Related GitHub commit | `584b9e2` — `feat: add Week 4 authentication prototype` |
 | Screenshot/other evidence | API verification output: `evidence/week-04/verification.md`; browser screenshot remains to be captured during a local run |
 | Next development step | Run the app locally, capture the actual UI flow, then provision PostgreSQL and begin course functionality in Week 5 |
 
