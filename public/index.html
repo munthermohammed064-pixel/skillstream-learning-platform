@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SkillStream | Account prototype</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="brand">
+      <div class="mark" aria-hidden="true">S</div>
+      <div><p class="eyebrow">SKILLSTREAM · WEEK 4 PROTOTYPE</p><h1>Learn at your pace.</h1></div>
+    </header>
+
+    <section class="card" aria-labelledby="welcome-title">
+      <div class="card-heading">
+        <div><p class="eyebrow">YOUR LEARNING STARTS HERE</p><h2 id="welcome-title">Create an account or sign in</h2></div>
+        <span class="status-dot">Prototype</span>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Account action">
+        <button class="tab active" id="register-tab" role="tab" aria-selected="true" aria-controls="account-form" data-mode="register">Create account</button>
+        <button class="tab" id="login-tab" role="tab" aria-selected="false" aria-controls="account-form" data-mode="login">Sign in</button>
+      </div>
+      <form id="account-form">
+        <div id="name-fields" class="name-fields">
+          <label>First name<input name="first_name" autocomplete="given-name" required maxlength="100" placeholder="e.g. Sara"></label>
+          <label>Last name<input name="last_name" autocomplete="family-name" required maxlength="100" placeholder="e.g. Ahmed"></label>
+        </div>
+        <label>Email address<input name="email" type="email" autocomplete="email" required maxlength="255" placeholder="you@example.com"></label>
+        <label>Password<input name="password" type="password" autocomplete="new-password" minlength="8" maxlength="128" required placeholder="At least 8 characters"><small>Use at least 8 characters.</small></label>
+        <label id="role-field">I am joining as<select name="role"><option value="student">Student</option><option value="teacher">Teacher</option></select></label>
+        <button class="submit" type="submit" id="submit-button">Create my account <span aria-hidden="true">→</span></button>
+      </form>
+      <div id="message" class="message" role="status" aria-live="polite" hidden></div>
+      <section id="account-panel" class="account-panel" hidden aria-live="polite">
+        <div class="checkmark" aria-hidden="true">✓</div>
+        <div><p class="eyebrow">SIGNED IN</p><h3 id="account-name"></h3><p id="account-details" class="muted"></p></div>
+        <button id="sign-out" class="sign-out" type="button">Sign out</button>
+      </section>
+      <p class="privacy-note">Your password is hashed before it is saved. This prototype stores accounts locally.</p>
+    </section>
+    <footer><span>SkillStream</span><span>Student · Teacher · Admin</span></footer>
+  </main>
+  <script src="/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+:root { color-scheme: light; --ink: #172b3b; --muted: #6e7e88; --teal: #187e79; --line: #e3e9e8; --paper: #fff; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; min-height: 100vh; color: var(--ink); background: radial-gradient(ellipse at 10% 8%, #e4f3f0 0, transparent 33%), #f5f7f6; font-family: 'DM Sans', 'Segoe UI', sans-serif; }
+.shell { width: min(100% - 40px, 560px); margin: 0 auto; padding: 72px 0 28px; }
+.brand { display: flex; align-items: center; gap: 15px; margin: 0 0 32px 4px; }
+.mark { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 15px 15px 15px 5px; color: #fff; background: var(--teal); font: 800 25px Manrope, sans-serif; box-shadow: 0 8px 20px #187e792e; }
+.eyebrow { margin: 0 0 6px; color: var(--teal); font-size: 10px; font-weight: 700; letter-spacing: .13em; }
+h1, h2, h3, p { margin-top: 0; }
+h1 { margin-bottom: 0; font: 700 20px Manrope, sans-serif; }
+.card { padding: 31px 34px 25px; border: 1px solid #e9eeec; border-radius: 18px; background: var(--paper); box-shadow: 0 22px 55px #193d3210; }
+.card-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+h2 { margin-bottom: 0; font: 700 22px Manrope, sans-serif; letter-spacing: -.035em; }
+.status-dot { margin-top: 2px; padding: 6px 10px; border-radius: 999px; color: #55716d; background: #eff6f4; font-size: 11px; font-weight: 600; white-space: nowrap; }
+.tabs { display: grid; grid-template-columns: 1fr 1fr; margin: 25px 0 21px; padding: 4px; border-radius: 10px; background: #f3f6f5; }
+.tab { padding: 10px; border: 0; border-radius: 7px; color: #71807e; background: transparent; font: 600 13px 'DM Sans', sans-serif; cursor: pointer; }
+.tab.active { color: var(--ink); background: white; box-shadow: 0 2px 6px #1d353a13; }
+form { display: grid; gap: 15px; }
+label { display: grid; gap: 7px; color: #364b57; font-size: 12px; font-weight: 600; }
+input, select { width: 100%; height: 43px; padding: 0 12px; border: 1px solid #dce4e3; border-radius: 8px; color: var(--ink); background: #fff; font: 400 13px 'DM Sans', sans-serif; outline: none; transition: border-color .15s, box-shadow .15s; }
+input::placeholder { color: #a5b0b2; }
+input:focus, select:focus { border-color: #65a7a0; box-shadow: 0 0 0 3px #187e7918; }
+small { margin-top: -3px; color: #889697; font-size: 10px; font-weight: 400; }
+.name-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+.submit { display: flex; justify-content: space-between; align-items: center; height: 46px; margin-top: 4px; padding: 0 15px; border: 0; border-radius: 8px; color: white; background: var(--teal); font: 600 13px 'DM Sans', sans-serif; cursor: pointer; transition: background .15s, transform .15s; }
+.submit:hover { background: #116d69; transform: translateY(-1px); }
+.submit:disabled { opacity: .65; cursor: wait; transform: none; }
+.message { margin-top: 16px; padding: 11px 13px; border-radius: 8px; font-size: 12px; line-height: 1.5; }
+.message.error { color: #943e35; background: #fff1ef; }
+.message.success { color: #276860; background: #edf8f5; }
+.account-panel { display: flex; align-items: center; gap: 12px; margin-top: 18px; padding: 14px; border: 1px solid #d8ebe6; border-radius: 10px; background: #f4faf8; }
+.account-panel h3 { margin: 0 0 3px; font: 700 15px Manrope, sans-serif; }
+.account-panel .eyebrow { margin-bottom: 3px; font-size: 9px; }
+.checkmark { display: grid; place-items: center; flex: 0 0 34px; height: 34px; border-radius: 50%; color: #fff; background: var(--teal); }
+.muted { margin: 0; color: var(--muted); font-size: 11px; }
+.sign-out { margin-left: auto; padding: 7px 9px; border: 1px solid #d5e3df; border-radius: 7px; color: #526d68; background: white; font: 600 11px 'DM Sans', sans-serif; cursor: pointer; }
+.privacy-note { margin: 20px 0 0; color: #899695; font-size: 10px; text-align: center; }
+footer { display: flex; justify-content: space-between; margin: 20px 3px 0; color: #81908f; font-size: 10px; }
+@media (max-width: 520px) { .shell { padding-top: 34px; } .card { padding: 25px 21px 21px; } h2 { font-size: 19px; } .name-fields { gap: 9px; } }

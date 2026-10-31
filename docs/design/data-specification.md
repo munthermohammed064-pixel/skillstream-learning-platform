@@ -81,6 +81,8 @@
 }
 ```
 
+The Week 4 prototype accepts `student` and `teacher` self-registration. Admin accounts must be provisioned separately and are not created through this public endpoint.
+
 **Response** (201 Created):
 ```json
 {
@@ -109,6 +111,13 @@
   "token": "jwt-token-here"
 }
 ```
+
+#### GET /api/me
+**Headers**: `Authorization: Bearer jwt-token-here`
+
+**Response** (200 OK): the authenticated user's public profile (`user_id`, `email`, `role`, `first_name`, `last_name`, and `created_at`). The password hash is never returned.
+
+Requests without a valid, unexpired token receive `401 Unauthorized`.
 
 ### Course Endpoints
 
@@ -149,7 +158,7 @@
 - Video URL format validation
 
 ### Privacy Concerns
-- Passwords are hashed using bcrypt or argon2 before storage
+- Week 3 proposal: bcrypt or Argon2. Week 4 prototype: Node.js `scrypt` with a per-account random salt before storage; the actual choice and reason are recorded in the Week 4 report.
 - User email addresses are not exposed in public course listings
 - Personal information (names, emails) is only accessible to authenticated users with appropriate permissions
 - Video content is access-controlled based on enrollment status
@@ -169,7 +178,5 @@
 - Video upload requires teacher authentication
 
 ### Database Connection
-- PostgreSQL connection pool configured in backend
-- Environment variables for database credentials
-- Migration scripts for schema versioning
-- Backup strategy for data recovery
+- Week 4 prototype: local SQLite database (`data/skillstream.sqlite`) created by Node.js's built-in SQLite module; `data/` is excluded from Git.
+- Planned full system: PostgreSQL connection pool configured in backend, credentials supplied through environment variables, migration scripts for schema versioning, and a backup strategy.
