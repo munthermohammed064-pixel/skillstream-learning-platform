@@ -22,3 +22,9 @@ Database check: one account row was present after the workflow; `password_hash` 
 ## Verification limit
 
 This is API handler evidence, not a browser screenshot. Localhost requests from the isolated environment were blocked, so this run did not verify the browser-to-server connection. For the submission demo, run `npm start` locally, open <http://localhost:3000>, register, sign out, sign in, and capture the working page with the account role visible.
+
+## Rerun and later interface evidence — 2 November 2026
+
+The authentication suite was rerun using Node.js v22.23.2 with `npm run verify:week4`. All seven cases passed: valid registration (201), valid login (200), protected profile (200), duplicate email (409), short password (400), incorrect password (401), and missing-token profile (401). The isolated database contained one account and confirmed the stored password was hashed.
+
+The student later supplied four screenshots from the local application. They are reproduced in `screenshots/` and show the student workspace and account, plus the teacher course library and account/settings. These images document the rendered interface; they do not establish that the agent performed an end-to-end browser test. Later local HTTP suites separately exercise course, platform, live-update and demonstration workflows; their results and limitations are summarized in `evidence/local-platform-verification.md`.

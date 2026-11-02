@@ -1,0 +1,74 @@
+[
+  {
+    "key": "javascript",
+    "title": "JavaScript, from functions to a small project",
+    "category": "Web Development",
+    "description": "Build a practical foundation in functions and arrays, then write a small order-total calculator. Includes a silent code walkthrough, examples, and a written project submission. Graduation demonstration course.",
+    "lessons": [
+      {
+        "title": "Functions: inputs, outputs, and useful checks",
+        "content": "A function names a reusable operation. Its parameters describe the inputs; return provides the output.\n\n```javascript\nfunction double(value) {\n  return value * 2;\n}\n```\n\n```javascript\nconst result = double(7); // 14\n```\n\nThe parameter is value. The argument in this call is 7. Returning a number lets another expression use it. Logging a number only prints it.\n\nCheck more than the happy path:\nconsole.assert(double(0) === 0);\nconsole.assert(double(-3) === -6);\nconsole.assert(double(2.5) === 5);\n\nPractice: write add(a, b), call it with positive and negative inputs, and explain the difference between return and console.log. The accompanying video is an original, silent slide/code walkthrough."
+      },
+      {
+        "title": "Arrays: transform, filter, and calculate",
+        "content": "An array stores an ordered collection. map creates a transformed collection, filter selects items, and reduce combines items into one result.\n\n```javascript\nconst prices = [10, 20, 30];\nconst withTax = prices.map(price => price * 1.1);\nconst expensive = prices.filter(price => price >= 20);\nconst total = prices.reduce((sum, price) => sum + price, 0);\n```\n\nwithTax contains approximate decimal values because JavaScript uses binary floating point. total is 60. The initial reduce value 0 also makes an empty list return 0.\n\nFor prices, use integer minor units when exact addition matters:\nconst cents = [1099, 2500];\nconst totalCents = cents.reduce((sum, amount) => sum + amount, 0);\n\nPractice: calculate the sum of [4, 0, -2] and explain why map does not modify the original prices array in this example."
+      },
+      {
+        "title": "A small project: calculate an order total",
+        "content": "Represent each order item with a unit price in cents and an integer quantity. Validate the input, then add each line total.\n\n```javascript\nfunction orderTotal(items) {\n  return items.reduce((sum, item) => {\n    if (!Number.isSafeInteger(item.priceCents) || item.priceCents < 0 ||\n        !Number.isSafeInteger(item.quantity) || item.quantity < 0) {\n      throw new Error('Invalid item');\n    }\n    const next = sum + item.priceCents * item.quantity;\n    if (!Number.isSafeInteger(next)) throw new Error('Total too large');\n    return next;\n  }, 0);\n}\n```\n\norderTotal([{priceCents: 500, quantity: 2}]); // 1000\norderTotal([]); // 0\n\nA further improvement is to validate that items is an array before calling reduce. Keep errors understandable for the caller.\n\nBefore submitting: check an empty order, multiple items, a zero quantity, invalid input, and an unsafe integer total. State any assumptions you make about the shape of each item."
+      }
+    ],
+    "assignment": {
+      "title": "Build and explain your order calculator",
+      "instructions": "Submit JavaScript code for orderTotal(items) and a short explanation. Use integer cents. Include at least four checks: empty order, multiple items, zero quantity, and invalid quantity. Explain your validation and an overflow case. Paste your code and reasoning into the answer field.\n\nAssessment / 100: correct totals 40; validation 25; meaningful checks 25; clear explanation 10. The teacher reviews and grades the submission."
+    }
+  },
+  {
+    "key": "sql",
+    "title": "SQL foundations for application developers",
+    "category": "Databases",
+    "description": "Design small relational tables, read data with joins, and protect related writes with a transaction. Text-based technical course with a practical schema/query assignment. Graduation demonstration course.",
+    "lessons": [
+      {
+        "title": "Tables, keys, and relationships",
+        "content": "A primary key identifies one row. A foreign key links a row to a related table. A unique constraint prevents duplicate values or pairs.\n\n```sql\nCREATE TABLE students (\n  id TEXT PRIMARY KEY,\n  name TEXT NOT NULL\n);\nCREATE TABLE enrollments (\n  student_id TEXT NOT NULL REFERENCES students(id),\n  course_id TEXT NOT NULL,\n  UNIQUE(student_id, course_id)\n);\n```\n\nIn a complete schema, course_id should also reference a courses table. With SQLite, enable PRAGMA foreign_keys = ON for each connection before relying on foreign-key enforcement.\n\nPractice: describe the error a duplicate student/course pair should produce and why application validation alone is insufficient."
+      },
+      {
+        "title": "SELECT, filtering, and joins",
+        "content": "```sql\nSELECT chooses columns; WHERE limits rows; JOIN relates matching records.\n```\n\n```sql\nSELECT s.name, e.course_id\nFROM students AS s\nJOIN enrollments AS e ON e.student_id = s.id\nWHERE e.course_id = ?\nORDER BY s.name;\n```\n\nBind the course ID as a parameter rather than concatenating untrusted input. An INNER JOIN excludes students without a matching enrollment. A LEFT JOIN can keep them and return NULL for missing enrollment fields.\n\nTo count enrollments per student, group by the student key and count a non-null enrollment column. COUNT(*) with a LEFT JOIN would also count the placeholder row for a student with no enrollments.\n\nPractice: write a query listing every student and their enrollment count, including zero."
+      },
+      {
+        "title": "Transactions and reliable changes",
+        "content": "A transaction groups related changes so they commit together or roll back together.\n\n```sql\nBEGIN;\n-- Insert an order header.\n-- Insert each order line.\nCOMMIT;\n```\n\nIf a required line insert fails, roll back the transaction instead of leaving an incomplete order. Do not catch and ignore errors inside a transaction.\n\nKeep transactions short and avoid network calls while holding database locks. Choose indexes based on real query patterns; an index improves some reads but also adds write and storage cost.\n\nPractice: explain where you would start, commit, and roll back a transaction when enrolling one student in two required modules as a single operation."
+      }
+    ],
+    "assignment": {
+      "title": "Model a small learning catalog",
+      "instructions": "Submit CREATE TABLE statements for students, courses, and enrollments with appropriate primary/foreign keys and a unique student/course pair. Add a parameterized query listing students in one course and a query returning enrollment counts including zero. Explain one transaction you would use.\n\nAssessment / 100: schema 40; queries 40; transaction explanation 20."
+    }
+  },
+  {
+    "key": "http",
+    "title": "HTTP and APIs: a practical first workflow",
+    "category": "Software Engineering",
+    "description": "Follow a browser request through an API, understand status codes and validation, and design a complete enrollment interaction. Text-based technical course. Graduation demonstration course.",
+    "lessons": [
+      {
+        "title": "Requests and responses",
+        "content": "An HTTP request has a method, a target, headers, and sometimes a body. The response has a status, headers, and sometimes a body.\n\n```http\nPOST /api/courses/example/enroll\nAuthorization: Bearer <token>\nContent-Type: application/json\n```\n\nThe server must derive the current account from verified authentication, not from an arbitrary user_id in the request body.\n\nA successful enrollment can return 201 Created with a new enrollment identifier. A duplicate can return 409 Conflict. A missing or invalid session receives 401; an authenticated account without permission receives 403.\n\nPractice: describe which component makes the final permission decision, even when the interface hides an unavailable action."
+      },
+      {
+        "title": "Handle loading, success, and failure",
+        "content": "A useful interface explains what is happening and preserves the user's work when a request fails.\n\n```javascript\nconst response = await fetch('/api/courses/example/enroll', {\n  method: 'POST',\n  headers: { Authorization: 'Bearer ' + token }\n});\nconst result = await response.json();\nif (!response.ok) throw new Error(result.error);\n```\n\nfetch does not reject merely because the response status is 400 or 500; check response.ok. It can reject for network failures. Production code should also account for responses that are not JSON.\n\nDisable the action while it is pending, show an understandable error, and re-enable retry when appropriate.\n\nPractice: list the visible UI states for an enrollment action and explain how a retry could create a duplicate without a database constraint."
+      },
+      {
+        "title": "Validate on the server and verify the workflow",
+        "content": "Client-side validation is useful feedback. Server-side validation enforces the contract. Database constraints preserve essential invariants.\n\nFor an enrollment endpoint, verify:\n1. No session is rejected.\n2. A teacher cannot enroll as a student.\n3. A draft course is unavailable to a new student.\n4. A valid student can enroll in a published course.\n5. A repeated request does not create another enrollment.\n\nAlso verify the returned account cannot read another student's private notes or submission. Include failures in your evidence instead of recording only successful calls.\n\nPractice: create a small expected/actual/status table for those checks and describe the starting database state."
+      }
+    ],
+    "assignment": {
+      "title": "Design a reliable enrollment endpoint",
+      "instructions": "Describe the request, authentication, authorization, validation, database operation, successful response, and error cases for enrollment. Add five meaningful verification cases with expected statuses. Explain how the interface handles a failed request without inventing a successful enrollment.\n\nAssessment / 100: end-to-end flow 40; permission/error handling 30; verification cases 30."
+    }
+  }
+]

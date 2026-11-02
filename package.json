@@ -1,12 +1,17 @@
 {
-  "name": "skillstream-week4-prototype",
-  "version": "0.1.0",
+  "name": "skillstream-local-platform",
+  "version": "0.2.0",
   "private": true,
-  "description": "Week 4 authentication prototype for the SkillStream graduation project",
+  "description": "Local technical learning platform for the SkillStream graduation project",
   "scripts": {
     "start": "node src/server.js",
     "verify:week4": "node scripts/verify-week4.js",
-    "verify:courses": "node scripts/verify-courses.js"
+    "verify:courses": "node scripts/verify-courses.js",
+    "verify:platform": "node scripts/verify-platform.js",
+    "admin": "node scripts/create-admin.js",
+    "verify:realtime": "node scripts/verify-realtime.js",
+    "demo": "node scripts/seed-demo.js",
+    "verify:demo": "node scripts/verify-demo.js"
   },
   "engines": {
     "node": ">=22.5.0"

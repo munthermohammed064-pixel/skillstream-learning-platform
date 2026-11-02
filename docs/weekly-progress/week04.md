@@ -69,4 +69,16 @@ The repeatable check is `npm run verify:week4`; its recorded output is in `evide
 - The frontend is a simple HTML/CSS/JavaScript screen, not the planned React interface.
 - Courses, enrollment, video delivery and progress tracking are not implemented yet.
 
-Before starting course/enrollment development, set up the PostgreSQL service and migrate account storage so the code follows the agreed Week 3 architecture. Continue with the course catalog/enrollment flow after that foundation is available.
+The entries above are the historical Week 4 plan and implementation record as written at that milestone. The following dated addendum records subsequent local development without rewriting that history.
+
+## Later local implementation addendum — 2 November 2026
+
+The prototype was extended after the original Week 4 authentication work. The current local code supports technical course publishing and enrollment, lessons and protected local video, playback progress and completion, private notes, written assignments and grading, course questions and replies, administrator account controls and offers, and authenticated live update notifications. The interface includes student, teacher and administrator workspaces.
+
+The implementation remains on built-in Node.js HTTP, SQLite, HTML, CSS and browser JavaScript. React, Express and PostgreSQL remain proposed technologies and have not been implemented. Administrator provisioning is now available as a separate local command. The prior limitations above describe the earlier milestone and should not be read as the current feature list.
+
+Verification rerun on 2 November 2026 used Node.js v22.23.2. `npm run verify:week4` passed all seven authentication cases; `npm run verify:courses`, `npm run verify:platform` (90 HTTP checks plus persistence), `npm run verify:realtime` and `npm run verify:demo` also passed. The demo check downloaded and decoded the authored WebM video and exercised enrollment, progress, notes, submission, grading and Q&A.
+
+Four screenshots supplied by the student are stored in `evidence/week-04/screenshots/`: student workspace, student account, teacher course library and teacher account/settings. They document rendered interfaces. They do not prove lesson playback, interactive registration, grading, or admin workflows. The two-second catalog performance target remains unmeasured. See `evidence/local-platform-verification.md` for the broader test scope and limits.
+
+The current implementation and supporting source are documented in the repository. The cumulative university report still requires transfer into the official university template before PDF submission.

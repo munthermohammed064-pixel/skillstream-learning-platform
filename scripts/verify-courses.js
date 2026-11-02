@@ -24,7 +24,7 @@ async function main() {
   const teacher = await register('teacher@example.test', 'teacher');
   const other = await register('other@example.test', 'teacher');
   const student = await register('student@example.test', 'student');
-  const draft = { title: 'Software Design', category: 'Engineering', description: 'Design a clear system.' };
+  const draft = { title: 'Software Design', category: 'Software Engineering', description: 'Design a clear system.' };
   await call('/api/courses', 'GET', undefined, undefined, 401);
   await call('/api/courses', 'POST', draft, student.token, 403);
   await call('/api/courses', 'POST', { ...draft, title: '' }, teacher.token, 400);

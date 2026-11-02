@@ -1,80 +1,280 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SkillStream</title>
-  <link rel="icon" href="/logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/styles.css">
-</head>
-<body>
-  <main class="shell" id="auth-shell">
-    <header class="brand">
-      <a class="wordmark" href="/" aria-label="SkillStream home"><img src="/logo.svg" alt="" width="28" height="28">SkillStream</a>
-    </header>
-
-    <div class="intro">
-      <div class="mark" aria-hidden="true"><img src="/logo.svg" alt="" width="80" height="80"></div>
-      <h1>Welcome.</h1>
-    </div>
-
-    <section class="card" aria-labelledby="welcome-title">
-      <div class="card-heading">
-        <h2 id="welcome-title" class="visually-hidden">Your account</h2>
-      </div>
-      <div class="tabs" role="tablist" aria-label="Account action">
-        <button class="tab active" id="register-tab" role="tab" aria-selected="true" aria-controls="account-form" data-mode="register">Create account</button>
-        <button class="tab" id="login-tab" role="tab" aria-selected="false" aria-controls="account-form" data-mode="login">Sign in</button>
-      </div>
-      <form id="account-form">
-        <div id="name-fields" class="name-fields">
-          <label>First name<input name="first_name" autocomplete="given-name" required maxlength="100" placeholder="e.g. Sara"></label>
-          <label>Last name<input name="last_name" autocomplete="family-name" required maxlength="100" placeholder="e.g. Ahmed"></label>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SkillStream</title>
+    <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/outfit.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <section id="landing" class="landing">
+      <header class="landing-nav">
+        <a class="wordmark" href="/"
+          ><img src="/logo.svg" width="28" height="28" alt="" />SkillStream</a
+        ><button class="secondary-button" data-enter="login">Sign in</button>
+      </header>
+      <div class="landing-hero">
+        <p class="section-kicker">A SPACE FOR TECHNICAL LEARNING</p>
+        <h1>Your next skill.<br /><span>Starts here.</span></h1>
+        <p>Learn the tools. Understand the ideas. Build something of your own.</p>
+        <button class="primary-button" data-enter="register">Start learning →</button
+        ><a href="#landing-courses" class="landing-link">Explore courses ↓</a>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-orbit orbit-one"></div>
+          <div class="art-orbit orbit-two"></div>
+          <div class="art-tile tile-back"><span>01 / EXPLORE</span><b>&lt;/&gt;</b></div>
+          <div class="art-tile tile-front">
+            <span>02 / UNDERSTAND</span><img src="/logo.svg" alt="" width="100" height="100" />
+            <div class="art-baseline"><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="art-caption"><span class="art-dot"></span>From curiosity to capability.</div>
         </div>
-        <label>Email address<input name="email" type="email" autocomplete="email" required maxlength="255" placeholder="you@example.com"></label>
-        <label>Password<input name="password" type="password" autocomplete="new-password" minlength="8" maxlength="128" required placeholder="8+ characters"></label>
-        <label id="role-field">Role<select name="role"><option value="student">Student</option><option value="teacher">Teacher</option></select></label>
-        <button class="submit" type="submit" id="submit-button">Create my account <span aria-hidden="true">→</span></button>
-      </form>
-      <div id="message" class="message" role="status" aria-live="polite" hidden></div>
-    </section>
-    <footer><span>SkillStream</span><span>© 2026</span></footer>
-  </main>
-  <section class="workspace" id="workspace" hidden aria-label="Your workspace">
-    <header class="workspace-bar">
-      <a class="wordmark" href="/" aria-label="SkillStream home"><img src="/logo.svg" alt="" width="28" height="28">SkillStream</a>
-      <span id="workspace-role" class="role-label"></span>
-    </header>
-    <aside class="sidebar">
-      <div class="sidebar-heading">Workspace</div>
-      <nav aria-label="Workspace navigation">
-        <button class="nav-item" data-view="courses" id="courses-nav">Explore courses</button>
-        <button class="nav-item" data-view="learning" id="learning-nav">My learning</button>
-        <button class="nav-item" data-view="profile">Account</button>
-      </nav>
-      <div class="sidebar-account"><span class="avatar" id="user-initials"></span><div><strong id="sidebar-name"></strong><button id="sign-out" class="text-button">Sign out</button></div></div>
-    </aside>
-    <main class="workspace-content">
-      <header class="page-heading"><div><p class="section-kicker" id="page-kicker"></p><h1 id="page-title" tabindex="-1"></h1></div><button id="new-course" class="primary-button" hidden>New course <span aria-hidden="true">+</span></button></header>
-      <section id="courses-view">
-        <div class="overview"><div><span id="overview-label">Available courses</span><strong id="course-count">—</strong></div><p id="overview-note"></p></div>
-        <div class="list-toolbar"><h2 id="list-title">All courses</h2><div class="list-controls"><input id="course-search" type="search" placeholder="Search courses" aria-label="Search courses"><select id="category-filter" aria-label="Filter category"><option value="">All categories</option></select></div></div>
-        <div id="course-list" class="course-list" aria-live="polite"></div>
+      </div>
+      <div class="landing-principles">
+        <div><span>01</span><strong>Choose your direction.</strong></div>
+        <div><span>02</span><strong>Learn by doing.</strong></div>
+        <div><span>03</span><strong>Make it your own.</strong></div>
+      </div>
+      <section class="landing-catalog" id="landing-courses">
+        <p class="section-kicker">BUILT FOR CURIOUS MINDS</p>
+        <h2>Find your next direction.</h2>
+        <div class="discipline-strip">
+          <span>Development</span><span>Data & AI</span><span>Cloud & DevOps</span
+          ><span>Cybersecurity</span>
+        </div>
+        <div id="public-courses" class="course-list"></div>
       </section>
-      <section id="profile-view" hidden><dl class="profile-details" id="profile-details"></dl></section>
+      <section class="landing-invitation" aria-labelledby="invitation-title">
+        <img src="/logo.svg" width="42" height="42" alt="" />
+        <div>
+          <p class="section-kicker">YOUR NEXT CHAPTER</p>
+          <h2 id="invitation-title">Make room for what’s next.</h2>
+        </div>
+        <button class="primary-button" data-enter="register">Start learning →</button>
+      </section>
+      <footer class="landing-footer">
+        <span>SkillStream</span><span>Technical learning. Your own pace.</span>
+      </footer>
+    </section>
+    <main class="shell" id="auth-shell" hidden>
+      <header class="brand">
+        <a class="wordmark" href="/" aria-label="SkillStream home"
+          ><img src="/logo.svg" alt="" width="28" height="28" />SkillStream</a
+        >
+      </header>
+
+      <div class="intro">
+        <div class="mark" aria-hidden="true">
+          <img src="/logo.svg" alt="" width="80" height="80" />
+        </div>
+        <h1>Build what’s next.</h1>
+        <p class="auth-caption">Technical learning. Your own pace.</p>
+      </div>
+
+      <section class="card" aria-labelledby="welcome-title">
+        <div class="card-heading">
+          <h2 id="welcome-title" class="visually-hidden">Your account</h2>
+        </div>
+        <div class="tabs" role="tablist" aria-label="Account action">
+          <button
+            class="tab active"
+            id="register-tab"
+            role="tab"
+            aria-selected="true"
+            aria-controls="account-form"
+            data-mode="register"
+          >
+            Create account
+          </button>
+          <button
+            class="tab"
+            id="login-tab"
+            role="tab"
+            aria-selected="false"
+            aria-controls="account-form"
+            data-mode="login"
+          >
+            Sign in
+          </button>
+        </div>
+        <form id="account-form" method="post">
+          <div id="name-fields" class="name-fields">
+            <label
+              >First name<input
+                name="first_name"
+                autocomplete="given-name"
+                required
+                maxlength="100"
+            /></label>
+            <label
+              >Last name<input name="last_name" autocomplete="family-name" required maxlength="100"
+            /></label>
+          </div>
+          <label
+            >Email address<input
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              maxlength="255"
+          /></label>
+          <label
+            >Password<input
+              name="password"
+              type="password"
+              autocomplete="new-password"
+              minlength="8"
+              maxlength="128"
+              required
+          /></label>
+          <label id="role-field"
+            >Role<select name="role">
+              <option value="student">Student</option>
+              <option value="teacher">Teacher</option>
+            </select></label
+          >
+          <button class="submit" type="submit" id="submit-button" disabled>
+            Create my account <span aria-hidden="true">→</span>
+          </button>
+        </form>
+        <div id="message" class="message" role="status" aria-live="polite" hidden></div>
+      </section>
+      <footer><span>SkillStream</span><span>© 2026</span></footer>
     </main>
-  </section>
-  <div id="notice" class="notice" role="status" hidden></div>
-  <dialog id="course-dialog" aria-labelledby="course-dialog-title">
-    <form id="course-form"><div class="dialog-heading"><h2 id="course-dialog-title">New course</h2><button type="button" class="close-dialog" aria-label="Close">×</button></div>
-      <label>Title<input name="title" required maxlength="120" placeholder="Give your course a name"></label>
-      <label>Category<input name="category" required maxlength="60" placeholder="e.g. Software engineering"></label>
-      <label>Description<textarea name="description" required maxlength="2000" rows="4" placeholder="What will your students learn?"></textarea></label>
-      <p id="course-error" class="form-error" role="alert"></p>
-      <button class="primary-button" type="submit">Save draft</button>
-    </form>
-  </dialog>
-  <dialog id="detail-dialog" aria-labelledby="detail-title"><div class="dialog-heading"><span id="detail-category" class="section-kicker"></span><button class="close-dialog" aria-label="Close">×</button></div><h2 id="detail-title"></h2><p id="detail-teacher" class="detail-byline"></p><p id="detail-description"></p><p class="lesson-note">Lessons have not been added yet.</p></dialog>
-  <script src="/app.js" defer></script>
-</body>
+    <section class="workspace" id="workspace" hidden aria-label="Your workspace">
+      <header class="workspace-bar">
+        <a class="wordmark" href="/" aria-label="SkillStream home"
+          ><img src="/logo.svg" alt="" width="28" height="28" />SkillStream</a
+        >
+        <div class="workspace-presence">
+          <span id="live-status" class="live-status" role="status">Connecting</span
+          ><span id="workspace-role" class="role-label"></span>
+        </div>
+      </header>
+      <aside class="sidebar">
+        <div class="sidebar-heading">Workspace</div>
+        <nav aria-label="Workspace navigation">
+          <button class="nav-item" data-view="courses" id="courses-nav">Explore courses</button>
+          <button class="nav-item" data-view="learning" id="learning-nav">My learning</button>
+          <button class="nav-item" data-view="saved" id="saved-nav">Saved courses</button>
+          <button class="nav-item" data-view="promotions" id="promotions-nav" hidden>
+            Offers & announcements
+          </button>
+          <button class="nav-item" data-view="people" id="people-nav" hidden>People</button>
+          <button class="nav-item" data-view="profile">Account</button>
+        </nav>
+        <div class="sidebar-account">
+          <span class="avatar" id="user-initials"></span>
+          <div>
+            <strong id="sidebar-name"></strong
+            ><button id="sign-out" class="text-button">Sign out</button>
+          </div>
+        </div>
+      </aside>
+      <main class="workspace-content">
+        <div id="live-update" class="live-update" hidden>
+          <span>Updates are ready. Your current work is preserved.</span
+          ><button id="apply-live-update" class="text-button">Show updates</button>
+        </div>
+        <header class="page-heading">
+          <div>
+            <p class="section-kicker" id="page-kicker"></p>
+            <h1 id="page-title" tabindex="-1"></h1>
+          </div>
+          <div class="heading-actions">
+            <button id="new-offer" class="primary-button" hidden>New offer +</button
+            ><button id="new-course" class="primary-button" hidden>
+              New course <span aria-hidden="true">+</span>
+            </button>
+          </div>
+        </header>
+        <section id="courses-view">
+          <section
+            id="offers"
+            class="offers"
+            aria-label="Offers and announcements"
+            aria-roledescription="carousel"
+            hidden
+          >
+            <div id="offer-card"></div>
+            <div class="offer-controls">
+              <span id="offer-position"></span>
+              <div>
+                <button id="offer-previous" aria-label="Previous offer">←</button
+                ><button id="offer-pause" aria-label="Pause automatic offers">Pause</button
+                ><button id="offer-next" aria-label="Next offer">→</button>
+              </div>
+            </div>
+          </section>
+          <div class="overview">
+            <div>
+              <span id="overview-label">Available courses</span><strong id="course-count">—</strong>
+            </div>
+            <p id="overview-note"></p>
+          </div>
+          <div class="list-toolbar">
+            <h2 id="list-title">All courses</h2>
+            <div class="list-controls">
+              <input
+                id="course-search"
+                type="search"
+                placeholder="Search courses"
+                aria-label="Search courses"
+              /><select id="category-filter" aria-label="Filter category">
+                <option value="">All categories</option>
+              </select>
+            </div>
+          </div>
+          <div id="course-list" class="course-list" aria-live="polite"></div>
+        </section>
+        <section id="profile-view" hidden>
+          <dl class="profile-details" id="profile-details"></dl>
+        </section>
+        <section id="classroom-view" hidden></section>
+        <section id="admin-view" hidden></section>
+      </main>
+    </section>
+    <div id="notice" class="notice" role="status" hidden></div>
+    <dialog id="course-dialog" aria-labelledby="course-dialog-title">
+      <form id="course-form">
+        <div class="dialog-heading">
+          <h2 id="course-dialog-title">New course</h2>
+          <button type="button" class="close-dialog" aria-label="Close">×</button>
+        </div>
+        <label
+          >Title<input name="title" required maxlength="120" placeholder="Give your course a name"
+        /></label>
+        <label>Technical category<select name="category" required></select></label>
+        <label
+          >Description<textarea
+            name="description"
+            required
+            maxlength="2000"
+            rows="4"
+            placeholder="What will your students learn?"
+          ></textarea>
+        </label>
+        <p id="course-error" class="form-error" role="alert"></p>
+        <button class="primary-button" type="submit">Save draft</button>
+      </form>
+    </dialog>
+    <dialog id="editor-dialog" aria-labelledby="editor-title">
+      <form id="editor-form">
+        <div class="dialog-heading">
+          <h2 id="editor-title"></h2>
+          <button type="button" class="close-dialog" aria-label="Close">×</button>
+        </div>
+        <div id="editor-fields"></div>
+        <p class="form-error" id="editor-error" role="alert"></p>
+        <button class="primary-button" type="submit" id="editor-save">Save</button>
+      </form>
+    </dialog>
+    <script src="/app.js" defer></script>
+    <script src="/learning.js" defer></script>
+    <script src="/live.js" defer></script>
+    <script src="/design.js" defer></script>
+  </body>
 </html>
