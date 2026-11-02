@@ -55,7 +55,7 @@ An optional, clearly labelled graduation demonstration now supplies three author
 - `npm run verify:realtime`: authenticated streams, recipient filtering, grade/submission privacy, scheduled offer expiry, token renewal and account revocation.
 - `npm run verify:demo`: idempotent setup, actual video download/FFmpeg decoding, and the student-to-teacher assignment/Q&A workflow.
 
-The video test uses a synthetic MP4 header fixture to verify access/storage/range handling; it does not prove codec playback. A separate demonstration check downloads and decodes the actual encoded WebM with FFmpeg. Four student-supplied screenshots document rendered account and catalog screens. Agent-performed interactive browser review and native browser playback remain unverified. The two-second catalog target has not been measured.
+The video test uses a synthetic MP4 header fixture to verify access/storage/range handling; it does not prove codec playback. A separate demonstration check downloads and decodes the actual encoded WebM with FFmpeg. Four student-supplied screenshots document rendered account and catalog screens. Agent-performed interactive browser review and native browser playback remain unverified. A 30-sample localhost API timing run measured `GET /api/courses` at p50 15.47 ms and p95 16.88 ms; it excludes page rendering and network conditions, so the complete two-second catalog target remains unverified. See `evidence/local-platform-verification.md` and `evidence/week-04/catalog-performance.md`.
 
 ## Remaining work before a public launch
 

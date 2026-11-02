@@ -1,0 +1,13 @@
+{
+  "measuredAtUtc": "2026-11-02T11:19:12.269Z",
+  "nodeVersion": "v22.23.2",
+  "environment": "localhost loopback, authenticated student, warm server and SQLite process",
+  "endpoint": "GET /api/courses",
+  "warmupRequests": 5,
+  "measuredRequests": 30,
+  "courseCount": 3,
+  "p50Ms": 15.47,
+  "p95Ms": 16.88,
+  "maxMs": 17.48,
+  "limitation": "API response including JSON parsing only; excludes browser rendering, static resources, and normal network conditions. Does not verify the full-page two-second NFR-01 target."
+}

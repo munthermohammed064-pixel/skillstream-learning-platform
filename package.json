@@ -9,6 +9,7 @@
     "verify:courses": "node scripts/verify-courses.js",
     "verify:platform": "node scripts/verify-platform.js",
     "admin": "node scripts/create-admin.js",
+    "measure:catalog": "node scripts/measure-catalog-performance.js",
     "verify:realtime": "node scripts/verify-realtime.js",
     "demo": "node scripts/seed-demo.js",
     "verify:demo": "node scripts/verify-demo.js"

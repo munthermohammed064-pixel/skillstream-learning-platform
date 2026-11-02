@@ -49,6 +49,8 @@ npm run verify:demo
 
 The full platform check uses an isolated temporary database and real HTTP, including permission failures, media transport, coursework, promotions, and persistence. See [local verification](evidence/local-platform-verification.md).
 
+With the local app and demo accounts running, `npm run measure:catalog` records 30 warm authenticated localhost catalog API timings after five warm-up requests. It reports API response time only; it does not measure browser rendering or certify the full-page two-second requirement. Results are saved to `evidence/week-04/catalog-performance.json`.
+
 ## Storage and limits
 
 SQLite, local uploads, signing key and initial admin credentials live inside ignored `data/`. Offers are informational: checkout and payments are not implemented, and enrollment is free. Assignment answers are text submissions. Email verification/reset delivery, cloud storage/transcoding, certificates, deployment and the planned PostgreSQL/React/Express migration remain future work. This is a local application and still needs manual browser/video playback review and production hardening.

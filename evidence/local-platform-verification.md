@@ -16,6 +16,10 @@ Frontend JavaScript syntax, unique HTML IDs, literal element bindings, and Git w
 
 Fixtures run in isolated temporary databases and do not add artificial submissions or grades to the user's local demo. Private credentials, databases and generated media remain under ignored `data/`.
 
-Four screenshots supplied by the student document the rendered student workspace/profile and teacher course/account screens; they are stored under `evidence/week-04/screenshots/`. Agent-performed interactive browser acceptance and native browser video playback are not claimed. The two-second catalogue timing target remains unmeasured. The API/media evidence does not substitute for those checks.
+Four screenshots supplied by the student document the rendered student workspace/profile and teacher course/account screens; they are stored under `evidence/week-04/screenshots/`. Agent-performed interactive browser acceptance and native browser video playback are not claimed.
+
+A localhost timing run on 2 November 2026 made 30 measured, warm, authenticated `GET /api/courses` requests after five warm-up requests against the three-course demo catalog. JSON-parsed response times were p50 15.47 ms, p95 16.88 ms and max 17.48 ms. The measurement was made over loopback against a warm Node.js/SQLite process; it excludes static resources, browser rendering and normal network conditions. It is supporting API evidence only; the full-page two-second NFR-01 remains unverified. The raw summary is saved as `evidence/week-04/catalog-performance.json`; reproduce it with `npm run measure:catalog` as described in `evidence/week-04/catalog-performance.md`.
+
+GitHub Issue [#4](https://github.com/munthermohammed064-pixel/skillstream-learning-platform/issues/4) records the Week 4 scope. It was created retrospectively on 2 November 2026 and does not claim to predate implementation. The current platform source is pushed in commit `88e9c6e`. The combined report PDF remains local and was not pushed or submitted.
 
 The university report still requires the official report template before PDF submission.

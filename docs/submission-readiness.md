@@ -4,47 +4,32 @@ Revision: 2 November 2026. University submission and deployment have not been pe
 
 ## Verified locally
 
-- Authentication: all seven cases pass; one account record and hashed password confirmed.
-- Courses: real HTTP registration, publishing, ownership, enrolment and duplicate prevention pass.
-- Platform: 90 HTTP checks pass; records persist after reopening SQLite.
-- Realtime: authenticated streams, recipient isolation, offer expiry and session revocation pass.
-- Demo: idempotent setup, protected video download and FFmpeg decoding, enrolment, progress, notes, submission, grading and reply pass.
-- Frontend JavaScript syntax checks and `git diff --check` pass (Git reports normal line-ending warnings).
+- `npm run verify:week4`: all seven authentication cases pass; one account record and a salted password hash confirmed.
+- `npm run verify:courses`: real HTTP registration, publishing, ownership, enrollment and duplicate prevention pass.
+- `npm run verify:platform`: 90 HTTP checks pass; records persist after reopening SQLite.
+- `npm run verify:realtime`: authenticated streams, recipient isolation, offer expiry and session revocation pass.
+- `npm run verify:demo`: idempotent setup, protected video download and FFmpeg decoding, enrollment, progress, notes, submission, grading and reply pass.
 
-These checks do not establish browser visual correctness, native browser video playback or the two-second catalogue target.
+## Performance evidence and limit
 
-## Report
+On 2 November 2026, 30 measured warm localhost requests to authenticated `GET /api/courses` returned the three-course demo catalog with p50 15.47 ms, p95 16.88 ms and maximum 17.48 ms. This is an API-only loopback measurement. It excludes browser rendering, static files and normal network conditions; it does not establish the full-page two-second NFR-01. The method and output are saved in `evidence/week-04/catalog-performance.md` and `catalog-performance.json`; repeat it with `npm run measure:catalog` while the app is running.
 
-Current review file: `output/pdf/SkillStream_Week4_Combined_Review.pdf`.
-It combines the weekly assignment and cumulative report, numbered figures/tables, authentic technical output and references. The footer contains page numbers only. Detailed appendices cover components, role workflows, core data relationships and registration sequence.
+## Review report
 
-## Browser evidence remains blocked
+Local review copy: `output/pdf/SkillStream_Week4_Combined_Review.pdf` (21 pages). It combines the Week 4 assignment and cumulative project report, numbered figures and tables, four student-supplied interface screenshots, technical verification output and references. Appendices contain the architecture, role workflows, data relationships, authentication sequence, and a requirement-to-evidence map. The copy still needs transfer into the official university template.
 
-The application was started at `http://localhost:3000/`. The browser tool rejected access because a saved permission or managed policy denied that origin. No alternate browser surface, headless tool or other workaround was used. Four screenshots were subsequently supplied by the student and included as Figures E.1-E.4. They show teacher courses/settings and student workspace/profile. No successful interactive browser acceptance by the agent is claimed.
+## Browser evidence
 
-Once browser access is allowed, capture the following using demonstration accounts without showing credentials or tokens:
+The student supplied four captures showing the student workspace/profile and teacher course/account screens. Interactive browser acceptance by the agent, native browser video playback, enrolled lesson progress, teacher assignment grading and admin offers are not claimed. Capture any of these only if an authentic browser demonstration is available; do not present API tests as browser evidence.
 
-1. Public welcome page and course catalogue.
-2. Registration result or authenticated student workspace.
-3. Enrolled course, actual video and progress.
-4. Teacher lesson/assignment management and review.
-5. Student-visible grade and instructor reply.
-6. Admin offers and user management.
+## Repository record
 
-Captions should identify the action and what the image proves. Add only actual captures to the report.
+The platform source is pushed to `docs/week3-architecture` in commit `88e9c6e` at [the project repository](https://github.com/munthermohammed064-pixel/skillstream-learning-platform). The existing branch name predates the Week 4 update. GitHub Issue [#4](https://github.com/munthermohammed064-pixel/skillstream-learning-platform/issues/4) records the Week 4 prototype scope; it was created retrospectively on 2 November 2026, after implementation. The combined report PDF and report output folder were not added to or pushed to GitHub.
 
-## Repository preparation
+## Remaining before final university submission
 
-The source changes are prepared for a GitHub update on `docs/week3-architecture`. This repository update is separate from uploading the combined report PDF to the university assignment.
-
-Candidate changes: application source and assets, verification scripts, original demo content, current documentation, and the final approved report. Review each path explicitly before staging. Do not stage `data/`, passwords, signing keys, temporary report renders or unrelated `docs/Week3_Submission.html`.
-
-Commit groups should describe platform implementation, interface design, verification/demo content and submission documentation. Report references to commit hashes must use the hashes actually created.
-
-## Outstanding before final submission
-
-- Apply the official university template when supplied.
-- Four student-supplied captures are incorporated; complete remaining interactive browser acceptance and any desired lesson/admin captures.
-- Review final report wording, diagrams, captions, citations and student details.
-- Resolve the authorised GitHub version and update its report reference if required.
-- Upload the approved combined PDF to the university assignment and verify the submission receipt/status. This final upload has not been performed.
+- Transfer the prepared report material into the official university template and preserve its headings and required front matter.
+- Confirm the student identity fields against the official template.
+- If the instructor expects browser-level evidence, capture authentic course, lesson, teacher-grading and admin screens and add accurate captions.
+- Measure the complete catalog page under the stated normal-network condition if claiming the two-second NFR-01.
+- Upload the final combined PDF to the university assignment portal and confirm its receipt/status.

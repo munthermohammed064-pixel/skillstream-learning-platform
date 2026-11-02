@@ -18,7 +18,7 @@ The Week 4 acceptance objective was the authentication workflow. The larger plat
 | FR-04: catalog and enrollment | Search/filter, preview, enrollment, saved list, personal library | HTTP enrollment and demo checks |
 | FR-05: lessons and progress | Protected local video, resume position, notes, completion | Platform checks and actual video download/decoding |
 | Password hashing | Salted scrypt hashes stored in SQLite | Authentication/storage assertions |
-| Catalog performance target | No measured proof against the original two-second requirement yet | Requires a timed browser measurement |
+| Catalog performance target | Local API timing: 30 warm localhost `GET /api/courses` responses, p50 15.47 ms / p95 16.88 ms / max 17.48 ms. Full-page target remains unverified because browser rendering, static resources, and normal network conditions were excluded. | Repeat timed browser measurement of the complete page under the documented normal-network condition. |
 
 ## Live data flow
 
