@@ -8,6 +8,7 @@
     "verify:week4": "node scripts/verify-week4.js",
     "verify:courses": "node scripts/verify-courses.js",
     "verify:platform": "node scripts/verify-platform.js",
+    "verify:week5": "node scripts/verify-week5.js",
     "admin": "node scripts/create-admin.js",
     "measure:catalog": "node scripts/measure-catalog-performance.js",
     "verify:realtime": "node scripts/verify-realtime.js",

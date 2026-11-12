@@ -37,6 +37,10 @@ The workspace uses an authenticated live stream for grades, replies, enrollment,
 
 See the [Arabic presentation walkthrough](docs/graduation-demo.md) and [local development report](docs/local-development-report.md). The university assignment submission is a separate PDF deliverable.
 
+## Week 5 report material
+
+The current requirement status, separate Stage 2 and Stage 3 records, evidence limits, and prioritized follow-up are in [Week 5 progress](docs/weekly-progress/week05.md). A report-ready implementation and architecture update is in [the Week 5 report section](docs/project-report-week5.md). The Week 3 proposal and the current local architecture comparison are in [the architecture record](docs/design/architecture-diagram.md). Stages 2 and 3 map to the existing 2 November platform commit `88e9c6e`; the record does not imply those features were newly written on the report update date.
+
 ## Verification
 
 ```powershell
@@ -45,9 +49,12 @@ npm run verify:courses
 npm run verify:platform
 npm run verify:realtime
 npm run verify:demo
+npm run verify:week5
 ```
 
 The full platform check uses an isolated temporary database and real HTTP, including permission failures, media transport, coursework, promotions, and persistence. See [local verification](evidence/local-platform-verification.md).
+
+`npm run verify:week5` reruns the existing verification suites and saves their command output in `evidence/week-05/verification.md` for the weekly record. It verifies API and persistence behavior; it does not perform interactive browser acceptance.
 
 With the local app and demo accounts running, `npm run measure:catalog` records 30 warm authenticated localhost catalog API timings after five warm-up requests. It reports API response time only; it does not measure browser rendering or certify the full-page two-second requirement. Results are saved to `evidence/week-04/catalog-performance.json`.
 

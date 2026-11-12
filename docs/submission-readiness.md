@@ -18,6 +18,8 @@ On 2 November 2026, 30 measured warm localhost requests to authenticated `GET /a
 
 Local review copy: `output/pdf/SkillStream_Week4_Combined_Review.pdf` (21 pages). It combines the Week 4 assignment and cumulative project report, numbered figures and tables, four student-supplied interface screenshots, technical verification output and references. Appendices contain the architecture, role workflows, data relationships, authentication sequence, and a requirement-to-evidence map. The copy still needs transfer into the official university template.
 
+Week 5 report material is maintained separately in `docs/weekly-progress/week05.md` and `docs/project-report-week5.md`; the current architecture comparison is in `docs/design/architecture-diagram.md`. The Week 5 records map Stage 2 and Stage 3 to the existing 2 November 2026 implementation commit and do not claim the functionality was newly implemented on the report-update date.
+
 ## Browser evidence
 
 The student supplied four captures showing the student workspace/profile and teacher course/account screens. Interactive browser acceptance by the agent, native browser video playback, enrolled lesson progress, teacher assignment grading and admin offers are not claimed. Capture any of these only if an authentic browser demonstration is available; do not present API tests as browser evidence.
