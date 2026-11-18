@@ -1,0 +1,3 @@
+(node:22704) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS: idempotent demo setup; real video HTTP download and FFmpeg decode; student enrollment, playback/completion/notes, assignment submission, teacher grading, reply, and progress.
