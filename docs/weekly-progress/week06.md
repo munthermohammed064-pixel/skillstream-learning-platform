@@ -22,9 +22,12 @@ T08 | Protected media, FR-05 (platform). Request bytes 4-11 and then bytes 999-1
 T09 | Coursework integration (demo). Download the demo video, submit student work and grade it as the teacher. Expected a decodable video and retrievable learning records. FFmpeg decode and coursework assertions passed.
 
 ## Results and limitations
-All five suites exited successfully. The platform suite passed 90 HTTP checks and retained records after SQLite was closed and reopened. The live-update suite confirmed recipient isolation and account revocation. Error responses in T02, T05, T07 and T08 were expected. No failing assertion required an application fix. Catalog page load time under normal network conditions and native browser playback still need browser measurements.
+All five suites exited successfully. The platform suite passed 90 HTTP checks and retained records after SQLite was closed and reopened. The live-update suite confirmed recipient isolation and account revocation. Error responses in T02, T05, T07 and T08 were expected. No failing assertion required an application fix. T10 | Catalog rendering, NFR-01. Expected three visible titles with fonts ready within 2000 ms. Edge on unthrottled localhost took 268 ms on first navigation and 85-144 ms on five repeats. PASS locally. External network conditions remain unmeasured.
+
+T11 | Native video, FR-05. Enroll through the student catalog and open the JavaScript course. Expected decoded frames and advancing playback. Edge played 1.03 seconds, decoded 29 frames at 1280 x 720 and reported zero media errors. PASS. Measurements: evidence/week-06/browser.json.
 
 ## Development Stage 4 and weekly log
 18 November 2026. Objective: validate the teacher-to-student workflow and its failure boundaries. The main decision was to check both the HTTP response and the resulting library or database record. T05 illustrates why: a conflict response alone would not establish that the second request left the enrollment count unchanged.
 Evidence: evidence/week-06/{week4,courses,platform,realtime,demo}.txt. Reproduce with node scripts/verify-NAME.js for each of the five names. Run from the repository root with Node.js and FFmpeg available. The test sources and recorded revision identify the assertions behind each result.
 Week 7: repeat installation and verification from a fresh checkout, document prerequisites, and capture the browser workflow from publication through saved progress. Measure catalog page load under a stated network profile.
+

@@ -1,0 +1,20 @@
+{
+  "browser": "157.0.4341.60",
+  "network": "localhost, unthrottled",
+  "catalog": "3 visible course titles, fonts ready and two animation frames",
+  "first_ms": 268,
+  "repeat_ms": [
+    128,
+    144,
+    85,
+    93,
+    93
+  ],
+  "video": {
+    "seconds": 1.0296,
+    "width": 1280,
+    "height": 720,
+    "frames": 29,
+    "error": 0
+  }
+}
