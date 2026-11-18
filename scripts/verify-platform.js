@@ -76,7 +76,7 @@ async function main() {
     await call(
       `${coursePath}/lessons`,
       'POST',
-      { title: 'Lesson one', content: 'شرح تقني محفوظ كما هو' },
+      { title: 'Lesson one', content: 'Technical lesson notes — preserved as written.' },
       teacher.token,
       201,
     )
@@ -103,7 +103,7 @@ async function main() {
   await call(`${coursePath}/enroll`, 'POST', undefined, second.token, 201);
   assert.equal(
     (await call(lessonPath, 'GET', undefined, student.token)).lesson.content,
-    'شرح تقني محفوظ كما هو',
+    'Technical lesson notes — preserved as written.',
   );
   await call(`${lessonPath}/progress`, 'PUT', { completed: true, position: 25 }, student.token);
   await call(`${lessonPath}/progress`, 'PUT', { position: -2 }, student.token, 400);

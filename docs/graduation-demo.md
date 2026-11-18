@@ -1,57 +1,29 @@
-# دليل عرض مشروع SkillStream
+# SkillStream graduation project demonstration
 
-هذه نسخة عرض محلية لمشروع التخرج. يميّز توثيق الأسبوع الرابع بين نطاق النموذج الأولي الأصلي والتوسعة المحلية اللاحقة.
+The Week 4 record describes the original prototype and the features added for this local demonstration.
 
-## قبل العرض
+## Setup
 
-1. شغّل `npm start` وافتح http://localhost:3000 ثم حدّث الصفحة بـ Ctrl+Shift+R.
-2. بيانات الأدمن في `data/admin-access.txt`، وبيانات المدرس والطالب التجريبيين في `data/demo-access.txt`. هذه ملفات خاصة مستثناة من Git.
-3. افتح تبويبين منفصلين: حساب المدرس في الأول والطالب في الثاني. حسابات المتصفح تستخدم جلسة خاصة بكل تبويب، لذلك يمكن تجربة الدورين معاً.
-4. جهّز الصوت على أنه غير مطلوب: الفيديو التجريبي صامت ومحتواه شرح مكتوب وكود، ومدته 56 ثانية.
+1. Run `npm start`, open http://localhost:3000 and refresh with Ctrl+Shift+R.
+2. Use the administrator credentials in `data/admin-access.txt` and the teacher and student credentials in `data/demo-access.txt`. Git excludes both private files.
+3. Open separate teacher and student tabs. Each tab keeps its own session.
+4. The 56-second demonstration video uses text and code examples and plays without sound.
 
-## سيناريو العرض — نحو 7 دقائق
+## Seven-minute walkthrough
 
-### 1. الفكرة والهوية
+1. Introduce the three roles, the technical course categories and the SkillStream logo. Open the JavaScript course and explain that its content and activity are demonstration data.
+2. As the student, preview the course and enroll. Play the lesson, seek ahead, pause and reopen it to show the saved position. Save a private note, mark the lesson complete and show the updated completion count and percentage.
+3. Open Assignments, read the instructions and submit a short answer. A fresh demonstration account starts without submissions or grades. For a repeat walkthrough after grading, create a new student account to preserve earlier work.
+4. In the teacher tab, open Assignments and select Review submissions. Show the incoming submission, enter a grade and feedback, then switch to the student tab to show the result. When a form has unsaved edits, Show updates lets the user choose when to refresh.
+5. Post a student question in Discussion, reply as the teacher and show the reply in the student tab. Open Students to see completed lesson counts.
+6. As the administrator, show user and course management. Open Offers & announcements and edit an offer or schedule a short announcement. Show its student-facing card, rotation and navigation controls. Discounts are demonstration announcements. The prototype does not process payments.
+7. Trace a request from browser JavaScript through Node.js to SQLite. The event stream tells authorized clients when to fetch changes. The server delivers local video in byte ranges. Explain why the local prototype uses this stack and how it differs from the original React, Express and PostgreSQL proposal.
 
-عرّف المنصة: تعليم تقني فقط، بثلاثة أدوار. اعرض التصنيفات وشعار SkillStream ثم افتح دورة JavaScript. وضّح أنها دورة تجريبية مكتوبة للمشروع، وليست مبيعات أو نشاط مستخدمين حقيقيين.
+## Evidence to capture
 
-### 2. الطالب والتعلّم
+Capture the registration and sign-in screens, student catalog, course details, video player, note and progress indicator. Follow one submission through grading and feedback. Include the teacher reply or student roster, the administrator offer and the corresponding student announcement. Capture verification output when relevant. Take screenshots from the running application.
 
-من حساب الطالب، اعرض تفاصيل الدورة قبل التسجيل ثم سجّل فيها. شغّل الفيديو، انتقل إلى موضع لاحق وأوقفه مؤقتاً، ثم افتح الدرس مجدداً لتوضيح حفظ المكان. اكتب ملاحظة خاصة واحفظها. علّم الدرس مكتملًا واعرض تغير العدد ونسبة الإنجاز.
-
-### 3. واجب وتسليم
-
-افتح تبويب Assignments، واقرأ التعليمات ثم أرسل إجابة قصيرة. الحساب التجريبي يبدأ بلا تسليمات أو درجات مزيفة. إذا كنت تكرر العرض بحساب سبق تصحيح واجبه، أنشئ حساب طالب جديداً بدل حذف بيانات قديمة.
-
-### 4. المدرس والتحديث المباشر
-
-في تبويب المدرس، افتح الدورة ثم Assignments وReview submissions. سيصل التحديث دون إعادة تحميل الصفحة. أعطِ درجة مع تعليق، ثم ارجع إلى تبويب الطالب لظهور النتيجة. عند وجود كتابة غير محفوظة، يعرض النظام زر Show updates لحمايتها.
-
-### 5. سؤال وجواب
-
-من الطالب أرسل سؤالاً ضمن Discussion. أجب عنه من المدرس، ثم اعرض وصول الرد إلى الطالب. يمكن كذلك فتح Students من المدرس لعرض عدد الدروس المكتملة.
-
-### 6. الأدمن والعروض
-
-سجّل الدخول كأدمن. اعرض إدارة الأشخاص والدورات، ثم Offers & announcements. عدّل أحد العروض أو أنشئ إعلاناً بوقت بداية/نهاية قريب. اعرض وصوله للطالب وتبدّل البطاقات، مع أزرار السابق والتالي والإيقاف. نسبة الخصم مثال إعلاني فقط؛ لا يوجد دفع أو شراء في المشروع.
-
-### 7. الشرح التقني الصادق
-
-المستخدم يتفاعل مع JavaScript في المتصفح؛ Node.js يستقبل الطلب؛ SQLite تحفظ البيانات؛ وقناة أحداث حية ترسل إشعار تغيير للمتصفح ليجلب البيانات بصلاحيات الحساب. الفيديو محفوظ محلياً ويُقرأ على أجزاء. التقنيات الحالية تختلف عن مقترح React/Express/PostgreSQL الأولي؛ وضّح هذا باعتباره قراراً للنسخة المحلية.
-
-## صور الأدلة المطلوبة عند المعاينة
-
-- واجهة التسجيل/الدخول.
-- كتالوج الطالب ودورة تقنية.
-- مشغّل الفيديو والملاحظة ونسبة الإنجاز.
-- تسليم الطالب ثم درجة وتعليق المدرس.
-- قائمة طلاب الدورة أو رد المدرس.
-- إدارة العروض وظهور إعلان في واجهة الطالب.
-- لقطة لنتيجة أوامر الفحص عند الحاجة.
-
-لم تُنشأ صور متصفح مصطنعة. المعاينة البصرية والتقاط هذه الصور يحتاجان التشغيل الفعلي من المتصفح.
-
-## أوامر التحقق
+## Verification
 
 ```
 npm run verify:week4
@@ -61,4 +33,4 @@ npm run verify:realtime
 npm run verify:demo
 ```
 
-`npm run demo` يعيد إنشاء البيانات الناقصة ويحافظ على الحسابات والتقدم والتعديلات الموجودة. لتوليد الفيديو من المصدر: `python scripts/create-demo-media.py`؛ يحتاج Pillow وFFmpeg، وهما متوفران في بيئة العمل الحالية.
+Run `npm run demo` to restore missing demonstration records while preserving accounts, progress and edits. To regenerate the video, run `python scripts/create-demo-media.py` with Pillow and FFmpeg installed.
