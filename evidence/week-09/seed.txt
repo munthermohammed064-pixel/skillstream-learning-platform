@@ -1,0 +1,5 @@
+Three labelled demo courses, nine written lessons, three assignments, two announcements, and one real video are ready.
+Private demo credentials: C:\Users\msi\Downloads\ALTINBAS_SWE497\tmp\week9-audit\data\demo-access.txt
+Existing course edits, account passwords, enrollments, and progress were preserved.
+(node:21812) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)

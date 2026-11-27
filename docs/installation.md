@@ -6,7 +6,7 @@ Tested on Windows on 27 November 2026 with Node.js 22.23.2 and FFmpeg 9.0. The a
 
 Install Git and Node.js 22.13 or later. For the Windows sample video, install Python with Pillow and FFmpeg available on PATH. The video generator uses Windows Segoe UI and Consolas fonts.
 
-git clone --branch codex/week-07-reproducibility https://github.com/munthermohammed064-pixel/skillstream-learning-platform.git
+git clone --branch codex/week-09-final https://github.com/munthermohammed064-pixel/skillstream-learning-platform.git
 cd skillstream-learning-platform
 node -v
 npm start
@@ -45,3 +45,4 @@ Generate the video before npm run demo if it reports missing demo media. Install
 ## Integrated workflow
 
 The browser calls the HTTP server, which checks the session and delegates course and learning operations to platform.js. SQLite saves the records. realtime.js sends authorized notifications so open clients can refresh. Course publication, enrollment, protected media, progress, assignment submission and grading are exercised by the integration suites. The existing local architecture remains applicable.
+

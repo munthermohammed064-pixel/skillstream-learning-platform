@@ -1,0 +1,52 @@
+(node:24504) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{
+  "runtime": "v22.23.2",
+  "database": "SQLite :memory:",
+  "results": [
+    {
+      "id": "P01",
+      "check": "Register valid student",
+      "status": 201,
+      "pass": true
+    },
+    {
+      "id": "P02",
+      "check": "Login with registered password",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "id": "P03",
+      "check": "Read protected profile with JWT",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "id": "P04",
+      "check": "Reject duplicate email",
+      "status": 409,
+      "pass": true
+    },
+    {
+      "id": "P05",
+      "check": "Reject short password",
+      "status": 400,
+      "pass": true
+    },
+    {
+      "id": "P06",
+      "check": "Reject incorrect password",
+      "status": 401,
+      "pass": true
+    },
+    {
+      "id": "P07",
+      "check": "Reject protected request without JWT",
+      "status": 401,
+      "pass": true
+    }
+  ],
+  "databaseRecordCount": 1,
+  "storedPasswordIsHash": true
+}

@@ -60,7 +60,7 @@ With the local app and demo accounts running, `npm run measure:catalog` records 
 
 ## Storage and limits
 
-SQLite, local uploads, signing key and initial admin credentials live inside ignored `data/`. Offers are informational: checkout and payments are not implemented, and enrollment is free. Assignment answers are text submissions. Email verification/reset delivery, cloud storage/transcoding, certificates, deployment and the planned PostgreSQL/React/Express migration remain future work. This is a local application and still needs manual browser/video playback review and production hardening.
+SQLite, local uploads, signing key and initial admin credentials live inside ignored `data/`. Offers are informational: checkout and payments are not implemented, and enrollment is free. Assignment answers are text submissions. Email verification/reset delivery, cloud storage/transcoding, certificates, deployment and the planned PostgreSQL/React/Express migration remain future work. Local browser playback has been verified. Production deployment and hardening remain future work.
 
 ## Documentation
 
@@ -103,3 +103,8 @@ Read the [updated project report](docs/project-report.md), [Week 8 review](docs/
 
 ## Authors and references
 Student author: Munther Iskender (210513647), Altinbas University. Review the report bibliography for role-based access control, Node.js and password-storage sources. Current limitations include peer setup, external deployment and normal-network performance validation.
+
+
+## Final demonstration
+
+[Week 9 audit](docs/weekly-progress/week09.md) · [Demonstration, pitch and career materials](docs/week09-demonstration.md) · [Final verification outputs](evidence/week-09/)

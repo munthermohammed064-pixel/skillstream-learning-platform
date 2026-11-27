@@ -1,5 +1,5 @@
 # SkillStream: Multi-Role Online Learning Platform
-### Graduation Project Report | Week 8
+### Final Graduation Project Report | Week 9
 
 ---
 
@@ -125,7 +125,7 @@ Browser HTML/CSS/JavaScript communicates with server.js through authenticated HT
 
 Figure 8.1. Requests reach a single Node.js process. Its handlers access SQLite records and protected lesson media.
 
-Stage 1 (31 October 2026, 584b9e2) implemented account registration, login, password hashes and protected profiles. Stage 2 (2 November, 88e9c6e) added teacher course/lesson drafts and publication. Stage 3 shares that commit and connects catalog, enrollment, protected lessons and saved progress. These stages were grouped in source history. Stage 4 (18 November, e4c0b98 and eccfbc9) recorded API validation and browser playback/timing. Stage 5 (27 November, 31b691d) tested a fresh clone and corrected missing video-generation instructions. Each dated weekly record contains decisions, evidence and next steps.
+Stage 1 (31 October 2026, [584b9e2](https://github.com/munthermohammed064-pixel/skillstream-learning-platform/commit/584b9e2)) implemented account registration, login, password hashes and protected profiles. Stage 2 (2 November, [88e9c6e](https://github.com/munthermohammed064-pixel/skillstream-learning-platform/commit/88e9c6e)) added teacher course/lesson drafts and publication. Stage 3 shares that commit and connects catalog, enrollment, protected lessons and saved progress. These stages were grouped in source history. Stage 4 (18 November, [e4c0b98](https://github.com/munthermohammed064-pixel/skillstream-learning-platform/commit/e4c0b98) and [eccfbc9](https://github.com/munthermohammed064-pixel/skillstream-learning-platform/commit/eccfbc9)) recorded API validation and browser playback/timing. Stage 5 (27 November, [31b691d](https://github.com/munthermohammed064-pixel/skillstream-learning-platform/commit/31b691d)) tested a fresh clone and corrected missing video-generation instructions. Each dated weekly record contains decisions, evidence and next steps.
 
 ## 8. Requirement traceability
 
@@ -159,7 +159,21 @@ The platform meets its central local teaching and learning objectives through pe
 ## 11. Future work and Week 9
 Rehearse teacher publication through student learning, confirm persistent progress after restart and review the final report against the official university template. Obtain peer setup feedback and measure catalog performance under a stated external network profile. Preserve the current SQLite implementation for the local demonstration and evaluate a database/cloud migration only when needed.
 
-## 12. References
+## 12. Final evaluation
+
+SkillStream connects the instructor who publishes a technical course to the learner who enrolls, watches a protected lesson and returns to saved progress. The final clean-clone audit reproduced the demo from source. The platform passed 90 HTTP checks and recovered its records after the database reopened. Browser playback advanced through 40 frames with no media error. These results support the local teaching workflow. Repeating the catalog test on a separate machine under a controlled network profile would address the main outstanding performance question.
+
+Figures 9.1 and 9.2 record the student workflow on the final audited build. The final audit worksheet gives the corresponding environment and measurements.
+
+![Final catalog](../evidence/week-09/student-catalog.png)
+
+Figure 9.1. Three technical courses appeared in the student's catalog before enrollment.
+
+![Final lesson](../evidence/week-09/lesson-playback.png)
+
+Figure 9.2. The enrolled student's browser opened the JavaScript lesson and decoded the protected video.
+
+## 13. References
 [1] R. S. Sandhu et al., Role-based access control models, IEEE Computer, 29(2), 1996, pp. 38-47.
 [2] Node.js HTTP documentation. https://nodejs.org/download/release/v22.23.2/docs/api/http.html
 [3] Node.js SQLite documentation. https://nodejs.org/download/release/v22.23.2/docs/api/sqlite.html
