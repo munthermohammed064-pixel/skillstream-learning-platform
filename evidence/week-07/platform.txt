@@ -1,0 +1,4 @@
+(node:22972) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS: 90 real HTTP checks; roles, technical categories, lessons, private notes, progress, saved courses, protected media/ranges, assignments/grading/deadlines, Q&A, offers/schedules, account updates, session revocation, and moderation.
+PASS: records survive closing and reopening the SQLite database.

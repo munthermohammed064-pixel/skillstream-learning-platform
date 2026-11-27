@@ -29,13 +29,13 @@ The interface uses the same restrained visual identity on desktop and mobile. Co
 
 ## Graduation demo
 
-The local demo content is already prepared. Credentials for its separate teacher/student accounts are in ignored `data/demo-access.txt`. Admin credentials remain in `data/admin-access.txt`.
+On a fresh clone, generate the demo video before seeding courses. Follow [the installation guide](docs/installation.md) for the complete command order. Credentials for its separate teacher/student accounts are in ignored `data/demo-access.txt`. Admin credentials remain in `data/admin-access.txt`.
 
 `npm run demo` restores missing demonstration records without resetting existing edits, progress or passwords. To regenerate the video, use `python scripts/create-demo-media.py` (Pillow and FFmpeg are authoring tools only; running the platform itself does not require them).
 
 The workspace uses an authenticated live stream for grades, replies, enrollment, course changes and offer schedules. Unsaved fields and active video playback are preserved when background updates arrive. The header shows Live or Reconnecting.
 
-See the [Arabic presentation walkthrough](docs/graduation-demo.md) and [local development report](docs/local-development-report.md). The university assignment submission is a separate PDF deliverable.
+See the [presentation walkthrough](docs/graduation-demo.md) and [local development report](docs/local-development-report.md). The university assignment submission is a separate PDF deliverable.
 
 ## Week 5 report material
 
@@ -70,3 +70,8 @@ SQLite, local uploads, signing key and initial admin credentials live inside ign
 - [Week 3 architecture](docs/design/architecture-decisions.md) and [diagram](docs/design/architecture-diagram.md).
 
 The older submission reports describe their original scope; the full local extension has not been submitted as Week 4 evidence.
+
+## Week 7 reproducibility
+
+Follow [installation and configuration](docs/installation.md). Recorded clean-clone outcomes are in [Week 7 progress](docs/weekly-progress/week07.md).
+

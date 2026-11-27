@@ -1,0 +1,3 @@
+(node:20164) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS: authenticated live streams, course/enrollment/progress updates, recipient isolation, private-note hints, origin IDs, automatic offer expiry, password renewal, and account revocation.

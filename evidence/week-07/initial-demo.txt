@@ -1,0 +1,3 @@
+First generate the demo video: python scripts/create-demo-media.py
+(node:3488) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)

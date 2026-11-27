@@ -1,0 +1,3 @@
+(node:10536) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS: real HTTP registration, course creation, validation, draft visibility, owner permissions, publishing, enrollment, duplicate prevention, student library, real student count, and unpublishing.
