@@ -111,3 +111,41 @@ The repository contained design documents but no runnable application code. Post
 ### 5.6 Current Limitations and Next Steps
 
 Admin account provisioning, email verification, password reset, rate limiting, deployment secret management, courses, enrollment, video delivery, and progress tracking are not implemented. The current interface is HTML/CSS/JavaScript, and the local data store is SQLite. The next steps are to verify the account flow, provision PostgreSQL, migrate the users table, and then develop the course catalog and enrollment flow.
+## 5. Week 8 revision and technical consistency
+
+This revision carries the original problem, roles, requirements and prototype record forward into the integrated local implementation. The following sections supersede the earlier proposed stack when describing the running software.
+
+## 6. Background and engineering method
+Requirements distinguish role-specific behavior from measurable quality targets. Role-based access control informed the teacher ownership and student enrollment checks [1]. Node.js provides built-in HTTP, SQLite and cryptographic operations [2-4]. Password storage follows a salted password-derivation approach informed by OWASP guidance [5]. Incremental development connected account operations, course publishing and learning records before integration checks.
+
+## 7. Implemented architecture and development
+Browser HTML/CSS/JavaScript communicates with server.js through authenticated HTTP requests. platform.js applies course ownership, enrollment and learning rules and persists records in SQLite. realtime.js sends permission-filtered change hints. Protected MP4/WebM files remain on local disk. Figure 8.1 describes this single-process deployment. React, Express, PostgreSQL and cloud video were earlier proposals.
+
+Stage 1 (31 October 2026, 584b9e2) implemented account registration, login, password hashes and protected profiles. Stage 2 (2 November, 88e9c6e) added teacher course/lesson drafts and publication. Stage 3 shares that commit and connects catalog, enrollment, protected lessons and saved progress. These stages were grouped in source history. Stage 4 (18 November, e4c0b98 and eccfbc9) recorded API validation and browser playback/timing. Stage 5 (27 November, 31b691d) tested a fresh clone and corrected missing video-generation instructions. Each dated weekly record contains decisions, evidence and next steps.
+
+## 8. Table 8.1 Requirement traceability
+FR-01 | server.js and account interface | Week 6 T01-T03 | Pass with separate administrator provisioning.
+FR-02 | platform.js administrator operations | Week 6 platform and realtime logs | Pass in local API verification.
+FR-03 | platform.js course/lesson rules | Week 6 course suite | Pass.
+FR-04 | platform.js enrollment and catalog | Week 6 T04-T05 | Pass.
+FR-05 | protected media and saved progress | Week 6 T06-T09/T11 | Pass locally.
+NFR-01 | catalog rendering | Week 6 T10, 268 ms initial and 85-144 ms repeats | Partial, measured on localhost only.
+NFR-02 | salted scrypt password storage | Week 6 T03 | Pass for stored-hash check.
+
+## 9. Testing, installation and results
+The existing verification suites use isolated SQLite records, HTTP requests and assertions about returned data. Week 6 passed all five suites, including 90 platform checks and database reopen persistence. Browser testing decoded 29 frames at 1280 by 720 with advancing playback and no media error. Figures 8.2 and 8.3 capture the current catalog and lesson output. Their fresh-run measurements are stored in evidence/week-08/browser.json.
+
+A fresh local clone during Week 7 lacked sample video because runtime data is excluded from Git. Seeding initially failed. Generating the original video with Python/Pillow and FFmpeg before seeding corrected the setup, and the demo retest passed. See evidence/week-07/initial-demo.txt and demo.txt. docs/installation.md documents prerequisites, clone, configuration, run, sample-data and verification commands. Runtime needs Node.js; sample-media creation additionally uses Windows fonts, Python, Pillow and FFmpeg.
+
+## 10. Limitations and conclusion
+The platform meets its central local teaching and learning objectives through persisted accounts, course publication, enrollment, lesson progress and coursework. The project demonstrates a connected application with repeatable local checks. Its evidence covers a single Windows host. Peer installation, full normal-network performance, external deployment and Linux/macOS sample-media generation remain open. Payments, live video, password-reset email and cloud transcoding are outside the implemented prototype.
+
+## 11. Future work and Week 9
+Rehearse teacher publication through student learning, confirm persistent progress after restart and review the final report against the official university template. Obtain peer setup feedback and measure catalog performance under a stated external network profile. Preserve the current SQLite implementation for the local demonstration and evaluate a database/cloud migration only when needed.
+
+## 12. References
+[1] R. S. Sandhu et al., Role-based access control models, IEEE Computer, 29(2), 1996, pp. 38-47.
+[2] Node.js HTTP documentation. https://nodejs.org/download/release/v22.23.2/docs/api/http.html
+[3] Node.js SQLite documentation. https://nodejs.org/download/release/v22.23.2/docs/api/sqlite.html
+[4] Node.js Crypto documentation. https://nodejs.org/download/release/v22.23.2/docs/api/crypto.html
+[5] OWASP Password Storage Cheat Sheet. https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html

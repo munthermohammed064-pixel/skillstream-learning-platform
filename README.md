@@ -75,3 +75,31 @@ The older submission reports describe their original scope; the full local exten
 
 Follow [installation and configuration](docs/installation.md). Recorded clean-clone outcomes are in [Week 7 progress](docs/weekly-progress/week07.md).
 
+
+## Project overview and objectives
+SkillStream helps teachers publish technical courses and students follow lessons with saved progress. It provides separate administrator, teacher and student responsibilities.
+
+## Architecture
+Browser JavaScript sends authenticated HTTP to server.js. platform.js applies learning rules and saves SQLite records. realtime.js notifies authorized clients to refresh. Media stays local.
+
+```mermaid
+flowchart LR
+ Browser[HTML CSS JavaScript] -->|HTTP and signed session| Server[server.js]
+ Server --> Platform[platform.js]
+ Platform --> Database[(SQLite)]
+ Platform --> Media[Protected local video]
+ Server --> Events[realtime.js]
+ Events -->|authorized change hints| Browser
+```
+
+## Usage and visual evidence
+Follow the [demonstration walkthrough](docs/graduation-demo.md) for course publication, enrollment, lesson completion and assignment grading. See [the final catalog](evidence/week-08/student-catalog.png) and [lesson playback](evidence/week-08/lesson-playback.png).
+
+## Repository structure
+src contains server modules, public contains the browser interface, scripts contains setup and verification tools, docs contains design and weekly records, and evidence contains recorded results.
+
+## Report and portfolio
+Read the [updated project report](docs/project-report.md), [Week 8 review](docs/weekly-progress/week08.md) and [installation guide](docs/installation.md). Local browser verification is documented in Week 6 and the current evidence directory.
+
+## Authors and references
+Student author: Munther Iskender (210513647), Altinbas University. Review the report bibliography for role-based access control, Node.js and password-storage sources. Current limitations include peer setup, external deployment and normal-network performance validation.
